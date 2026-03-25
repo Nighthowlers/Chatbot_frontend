@@ -19,9 +19,10 @@ const handleSubmit=async()=>{
   if(!input.trim()) return;
   setLoading(true);
   try{
-    const response=await axios.post(`${process.env.REACT_APP_API_URL}/bot/v1/message`,{
-      text :input 
-    });
+    const response = await axios.post(
+  `${import.meta.env.VITE_API_URL}/bot/v1/message`,
+  { text: input }
+);
     if(response.status===200){
       setMessages([...messages,{text:response.data.userMessage, sender:"user"},{text:response.data.botMessage,sender:"bot"}]);
       
@@ -41,6 +42,7 @@ const handleKeyPress=(e)=>{
   }
 }
   return (
+    
     <div className='flex flex-col min-h-screen bg-[#0d0d0d] text-white'>
          {/* Navbar & Header */}
       <header className="fixed top-0 left-0 w-full border-b border-gray-800 bg-[#0d0d0d] z-10">
@@ -56,8 +58,8 @@ const handleKeyPress=(e)=>{
           {messages.length === 0 ? (
             // Centered welcome message
             <div className="text-center text-gray-400 text-lg">
-              👋 Hi, I'm{"Pranjal's ChatBot"}
-              <span className="text-green-500 font-semibold">BotSpoof</span>.
+              👋 Hi, I'm{"Pranjal's "}
+              <span className="text-green-500 font-semibold">ChatBot</span>.
             </div>
           ) : (
             <>
