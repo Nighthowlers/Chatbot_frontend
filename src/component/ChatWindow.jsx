@@ -42,6 +42,8 @@ function ChatWindow({ mode }) {
       const response = await axios.post(`${API_URL}/bot/v1/message`, {
         text: userText,
         mode: mode
+      }, {
+        timeout: 60000 // 60 second timeout
       });
 
       const botText = response.data?.botMessage;
