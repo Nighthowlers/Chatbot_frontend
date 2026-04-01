@@ -24,15 +24,15 @@ function ChatWindow({ mode }) {
     setIsAtBottom(nearBottom);
   };
 
-  // Backend URL (local fallback when VITE_API_URL is not set)
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4005";
+  // Backend URL (fallback to production when VITE_API_URL is not set)
+  const API_URL = import.meta.env.VITE_API_URL || "https://chatbot-backend-mrnh.onrender.com";
 
   const sendMessage = async () => {
     if (!input.trim()) return;
 
     const userText = input.trim();
     setLoading(true);
-    setError("");
+    setError("");git 
 
     const userMessage = { sender: "user", text: userText };
     setMessages((prev) => [...prev, userMessage, { sender: "assistant", text: "", id: "pending" }]);
