@@ -26,6 +26,7 @@ function ChatWindow({ mode }) {
 
   // Backend URL (fallback to production when VITE_API_URL is not set)
   const API_URL = import.meta.env.VITE_API_URL || "https://chatbot-backend-mrnh.onrender.com";
+  console.log("API URL:", import.meta.env.VITE_API_URL);
 
   const sendMessage = async () => {
     if (!input.trim()) return;
