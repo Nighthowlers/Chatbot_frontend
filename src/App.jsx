@@ -1,11 +1,16 @@
-import React from 'react';
-import Bot from './component/Bot';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ChatPage from "./pages/ChatPage";
+
 function App() {
   return (
-    <div>
-      <Bot/>
-    </div>
-  )
+    <Router>
+      <div className="h-screen w-full bg-[#0b1020] text-white">
+        <Routes>
+          <Route path="/" element={<ChatPage />} />
+        </Routes>
+      </div>
+    </Router>
+  );
 }
 
-export default App
+export default App;
