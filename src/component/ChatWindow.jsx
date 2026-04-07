@@ -24,16 +24,15 @@ function ChatWindow({ mode }) {
     setIsAtBottom(nearBottom);
   };
 
-  // Backend URL (fallback to production when VITE_API_URL is not set)
-  const API_URL = import.meta.env.VITE_API_URL || "https://chatbot-backend-mrnh.onrender.com";
-  console.log("API URL:", import.meta.env.VITE_API_URL);
+  // Backend URL (local fallback when VITE_API_URL is not set)
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4005";
 
   const sendMessage = async () => {
     if (!input.trim()) return;
 
     const userText = input.trim();
     setLoading(true);
-    setError("");git 
+    setError("");
 
     const userMessage = { sender: "user", text: userText };
     setMessages((prev) => [...prev, userMessage, { sender: "assistant", text: "", id: "pending" }]);
@@ -43,8 +42,6 @@ function ChatWindow({ mode }) {
       const response = await axios.post(`${API_URL}/bot/v1/message`, {
         text: userText,
         mode: mode
-      }, {
-        timeout: 60000 // 60 second timeout
       });
 
       const botText = response.data?.botMessage;
